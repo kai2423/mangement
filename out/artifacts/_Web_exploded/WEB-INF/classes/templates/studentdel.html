@@ -1,0 +1,230 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>学生信息管理平台</title>
+<link rel="stylesheet" type="text/css"
+	href="../Script/bootstrap/bootstrap.css" />
+<link href="../Style/StudentStyle.css" rel="stylesheet" type="text/css" />
+<link href="../Style/ks.css" rel="stylesheet" type="text/css" />
+
+
+<script type="text/javascript" src="../Script/jquery.js"></script>
+<script type="text/javascript" src="../Script/bootstrap/bootstrap.js"></script>
+
+<script type="text/javascript">
+
+
+	$.get("/getStudentDel",function (data) {
+		console.log(data)
+		$("#user_name").html(data.name);
+		$("#student_Id").html(data.studentId);
+		$("#username").html(data.name);
+		$("#idCardNumber").html(data.idCardNumber);
+		$("#studentId").html(data.studentId);
+		$("#classes").html(data.classes);
+		$("#sex").html(data.sex);
+		$("#age").html(data.age);
+		$("#nation").html(data.nation);
+		$("#NativePlace").html(data.nativePlace);
+		$("#s1").html(data.education.s1);
+		$("#e1").html(data.education.e1);
+		$("#sc1").html(data.education.sc1);
+		$("#t1").html(data.education.t1);
+		$("#s2").html(data.education.s2);
+		$("#sc2").html(data.education.sc2);
+		$("#t2").html(data.education.t2);
+		$("#s3").html(data.education.s3);
+		$("#sc3").html(data.education.sc3);
+		$("#t3").html(data.education.t3);
+		$("#s4").html(data.education.s4);
+		$("#e4").html(data.education.e4);
+		$("#sc4").html(data.education.sc4);
+		$("#t4").html(data.education.t4);
+		$("#s5").html(data.education.s5);
+		$("#e5").html(data.education.e5);
+		$("#sc5").html(data.education.sc5);
+		$("#t5").html(data.education.t5);
+		$("#s6").html(data.education.s6);
+		$("#e6").html(data.education.e6);
+		$("#sc6").html(data.education.sc6);
+		$("#t6").html(data.education.t6);
+	},"json");
+
+	
+</script>
+
+</head>
+<body>
+
+	<div class="banner">
+		<div class="bgh">
+			<div class="page">
+				<div id="logo">
+					<a href="../Index.html"> <img
+						src="../Images/Student/logo2.png" alt="" width="48" height="48" />
+					</a>
+				</div>
+				<div class="topxx">
+					<span id="student_Id"></span>：
+					<span id="user_name" ></span>，欢迎您！
+					<a href="studentSim.html">我的信息</a>
+					<a href="ChangePasswd.html">密码修改</a>
+					<a onclick="loginOut()" href="javascript:">安全退出</a>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<div class="page">
+		<div class="box mtop">
+			<div class="leftbox">
+				<div class="l_nav2">
+					<div class="ta1">
+						<strong>个人中心</strong>
+						<div class="leftbgbt"></div>
+					</div>
+					<div class="cdlist">
+						<div>
+							<a href="studentSim.html">我的信息</a>
+						</div>
+						<div>
+							<a href="studentdel.html">学籍信息 </a>
+						</div>
+						<div>
+							<a href="ChangePasswd.html">修改密码 </a>
+						</div>
+						
+					</div>
+					
+					<!--结束-->
+				</div>
+			</div>
+			<div class="rightbox">
+				<h2 class="mbx">我的信息 &gt; 个人资料 &nbsp;&nbsp;&nbsp;</h2>
+				<div class="morebt">
+
+
+					<ul id="ulStudMsgHeadTab">
+						<li><a class="tab2" onclick="" href="studentSim.html">个人资料</a>
+						</li>
+						<li><a class="tab2" onclick="" href="studentdel.html">学籍信息</a></li>
+						
+					</ul>
+
+				</div>
+				<div class="cztable">
+					<table width="100%" cellpadding="0" cellspacing="0">
+						<tr>
+							<td align="right" width="80">姓名：</td>
+							<td id="username"></td>
+							<td align="right" width="90">身份证号码：</td>
+							<td id="idCardNumber">&nbsp;</td>
+
+							<td rowspan="5">
+                                <div align="center">
+									<img id="pic_face" height="160" width="120"
+										src="../static/Images/16sucai_P591F7B181.JPG"
+										style="padding: 2px 2px 5px; border: 1px #ddd solid;">
+                                </div>&nbsp;
+                            </td>
+						</tr>
+						<tr>
+							<td align="right">学号：</td>
+							<td id="studentId">&nbsp;</td>
+							<td align="right">班级：</td>
+							<td id="classes">&nbsp;</td>
+						</tr>
+						<tr>
+							<td align="right">性别</td>
+							<td id="sex">&nbsp;</td>
+							<td align="right">年龄：</td>
+							<td id="age">&nbsp;</td>
+						</tr>
+						<tr>
+							<td align="right">民族：</td>
+							<td id="nation">&nbsp;</td>
+							<td align="right">籍贯：</td>
+							<td id="NativePlace">&nbsp;</td>
+                        </tr>
+
+                    </table>
+                    <table width="100%" cellpadding="0" cellspacing="0">
+						<tr>
+							<td align="center" width="80">一年级</td>
+							<td align="center" width="80">入学时间</td>
+							<td id="s1">&nbsp;</td>
+							<td align="center" width="90">结束时间</td>
+							<td id="e1">&nbsp;</td>
+							<td align="center" width="80">学校</td>
+							<td id="sc1">&nbsp;</td>
+							<td align="center" width="90">班主任</td>
+							<td id="t1">&nbsp;</td>
+						</tr>
+
+						<tr>
+							<td align="center" width="80">二年级</td>
+							<td align="center" width="80">入学时间</td>
+							<td id="s2">&nbsp;</td>
+							<td align="center" width="90">结束时间</td>
+							<td id="e2">&nbsp;</td>
+							<td align="center" width="80">学校</td>
+							<td id="sc2">&nbsp;</td>
+							<td align="center" width="90">班主任</td>
+							<td id="t2">&nbsp;</td>
+						</tr>
+						<tr>
+							<td align="center" width="80">三年级</td>
+							<td align="center" width="80">入学时间</td>
+							<td id="s3">&nbsp;</td>
+							<td align="center" width="90">结束时间</td>
+							<td id="e3">&nbsp;</td>
+							<td align="center" width="80">学校</td>
+							<td id="sc3">&nbsp;</td>
+							<td align="center" width="90">班主任</td>
+							<td id="t3">&nbsp;</td>
+						</tr>
+
+						<tr>
+							<td align="center" width="80">四年级</td>
+							<td align="center" width="80">入学时间</td>
+							<td id="s4">&nbsp;</td>
+							<td align="center" width="90">结束时间</td>
+							<td id="e4">&nbsp;</td>
+							<td align="center" width="80">学校</td>
+							<td id="sc4">&nbsp;</td>
+							<td align="center" width="90">班主任</td>
+							<td id="t4">&nbsp;</td>
+						</tr>
+
+						<tr>
+							<td align="center" width="80">五年级</td>
+							<td align="center" width="80">入学时间</td>
+							<td id="s5">&nbsp;</td>
+							<td align="center" width="90">结束时间</td>
+							<td id="e5">&nbsp;</td>
+							<td align="center" width="80">学校</td>
+							<td id="sc5">&nbsp;</td>
+							<td align="center" width="90">班主任</td>
+							<td id="t5">&nbsp;</td>
+						</tr>
+						<tr>
+							<td align="center" width="80">六年级</td>
+							<td align="center" width="80">入学时间</td>
+							<td id="s6">&nbsp;</td>
+							<td align="center" width="90">结束时间</td>
+							<td id="e6">&nbsp;</td>
+							<td align="center" width="80">学校</td>
+							<td id="sc6">&nbsp;</td>
+							<td align="center" width="90">班主任</td>
+							<td id="t6">&nbsp;</td>
+						</tr>
+					</table>
+					
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>

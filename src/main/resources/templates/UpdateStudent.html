@@ -1,0 +1,375 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改学生信息</title>
+<link rel="stylesheet" type="text/css"
+	href="../../Script/bootstrap/bootstrap.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../Script/jquery-datepicker/jquery-ui.css" />
+<link href="../../Style/StudentStyle.css" rel="stylesheet"
+	type="text/css" />
+<link href="../../Style/ks.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../Script/jquery.js"></script>
+<script type="text/javascript"
+	src="../../Script/jquery-datepicker/jquery-ui.js"></script>
+<script type="text/javascript" src="../../Script/bootstrap/bootstrap.js"></script>
+<script type="text/javascript" src="../../Script/common.js"></script>
+
+
+<script type="text/javascript">
+	//退出
+	function loginOut() {
+		if (confirm("确定退出吗？")) {
+
+		}
+	}
+    
+    $(function(){
+    	$(document).on('click','.student',function(){
+    		if($(this).prop("checked") == false){
+    			 $("#all").prop("checked",false);
+    		}
+    	});
+    	//初始化日期
+    	$("#start,#end").datepicker();
+   	  
+    });
+</script>
+</head>
+<body>
+
+	<div class="banner">
+		<div class="bgh">
+			<div class="page">
+				<div id="logo">
+					<a href="../../Index.html"> <img
+						src="../../Images/Student/logo2.png" alt="" width="48" height="48" />
+					</a>
+				</div>
+				<div class="topxx">
+					管理员，欢迎您！
+					<a href=""> 通知</a> <a href="ChangePasswd.html">密码修改</a>
+					<a onclick="loginOut()" href="javascript:void(0);">安全退出</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="page">
+		<div class="box mtop">
+			<div class="leftbox">
+				<div class="l_nav2">
+					
+					<!--学生管理-->
+					<div class="ta1">
+						<strong>学生管理</strong>
+						<div class="leftbgbt2"></div>
+					</div>
+					<div class="cdlist">
+						<div>
+							<a href="admin_studentList.html">学生信息列表</a>
+                        </div>
+                        <div>
+                            <a href="adminClassInfo.html">班级信息</a>
+                        </div>
+					</div>
+                    
+					<!--结束-->
+				</div>
+			</div>
+			<div class="rightbox">
+				<h2 class="mbx">学生管理 &gt; 修改学生学籍信息</h2>
+				<div class="cztable">
+					<form class="form-horizontal" action="" method="post">
+						<div class="form-group" style="height: 40px;">
+							<label for="username" class="col-sm-2 control-label">姓名：</label>
+							<div class="col-sm-10">
+								<input type="text" name="username" class="form-control" readonly="readonly"
+									id="username" name="" value="邹智">
+							</div>
+						</div>
+                        <div class="form-group" style="height: 40px;">
+							<label for="idCardNumber" class="col-sm-2 control-label">身份证号：</label>
+							<div class="col-sm-10">
+								<input type="text" name="idCardNumber" class="form-control" readonly="readonly"
+									id="idCardNumber"  value="910513201419">
+							</div>
+						</div>
+						<div class="form-group" style="height: 40px;">
+							<label for="studentId" class="col-sm-2 control-label">学号：</label>
+							<div class="col-sm-10">
+								<input type="text" name="studentId" class="form-control input-xlarge" readonly="readonly"
+									id="studentId"  value="123456">
+							</div>
+						</div>
+						<div class="form-group" style="height: 40px;">
+							<label for="classes" class="col-sm-2 control-label">班级：</label>
+							<div class="col-sm-10">
+								<input type="text" name="classes" class="form-control"
+									id="classes" value="430181198612113330">
+							</div>
+						</div>
+						<div class="form-group" style="height: 40px;">
+							<label class="col-sm-2 control-label ">性别</label>
+							<div class="col-sm-10">
+								<div class="btn-group" data-toggle="buttons">
+									<label class="btn btn-info active"> <input type="radio"
+										name="sex" value="男"> 男
+									</label> <label class="btn btn-info"> <input type="radio"
+										name="sex" value="女">女
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group" style="height: 40px;">
+							<label for="inputEducational" class="col-sm-2 control-label">年龄</label>
+							<div class="col-sm-10">
+								<select id="inputEducational" name="age"
+									class="selectpicker show-tick form-control"
+									data-live-search="false">
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9" selected="selected">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+									<option value="13">13</option>
+									<option value="14">14</option>
+									<option value="15">15</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group" style="height: 40px;">
+							<label for="nation" class="col-sm-2 control-label">民族</label>
+							<div class="col-sm-10">
+								<input type="text" name="nation" class="form-control"
+									id="nation" value="湖南大学">
+							</div>
+						</div>
+						<div class="form-group" style="height: 40px;">
+							<label for="NativePlace" class="col-sm-2 control-label">籍贯</label>
+							<div class="col-sm-10">
+								<input type="text" name="NativePlace" class="form-control"
+									id="NativePlace" value="湖南大学">
+							</div>
+						</div>
+						
+						<h3>入学信息</h3>
+						<div>
+							<div class="form-group" style="height: 40px;">
+								<label  class="col-sm-2 control-label h4" style="color:rgb(22, 36, 235)">一年级</label>
+								
+							</div>
+							<div class="form-group" style="height: 40px;">
+								<label for="s1" class="col-sm-2 control-label" >入学日期</label>
+								<div class="col-md-4">
+									<input class="form-control" type="text" value=""
+										readonly="readonly" name="s1"
+										id="s1" />
+								</div>
+								<label for="e1" class="col-sm-2 control-label rili">结束日期</label>
+								<div class="col-md-4">
+									<input class="form-control" type="text" value=""
+										readonly="readonly" name="e1"
+										id="e1" />
+								</div>	
+							</div>
+							<div class="form-group" style="height: 40px;">
+								<label for="sc1" class="col-sm-2 control-label" >学校</label>
+								<div class="col-sm-4">
+									<input type="text" name="sc1" class="form-control"
+										id="sc1" value="湖南大学">
+								</div>
+								<label for="t1" class="col-sm-2 control-label" >班主任</label>
+								<div class="col-sm-4">
+									<input type="text" name="t1" class="form-control"
+										id="t1" value="湖南大学">
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<div class="form-group" style="height: 40px;">
+								<label  class="col-sm-2 control-label h4" style="color:rgb(22, 36, 235)">二年级</label>
+								
+							</div>
+							<div class="form-group" style="height: 40px;">
+								<label for="s2" class="col-sm-2 control-label" >入学日期</label>
+								<div class="col-md-4">
+									<input class="form-control" type="text" value=""
+										readonly="readonly" name="s2"
+										id="s2" />
+								</div>
+								<label for="e2" class="col-sm-2 control-label rili">结束日期</label>
+								<div class="col-md-4">
+									<input class="form-control" type="text" value=""
+										readonly="readonly" name="e2"
+										id="e2" />
+								</div>	
+							</div>
+							<div class="form-group" style="height: 40px;">
+								<label for="sc2" class="col-sm-2 control-label" >学校</label>
+								<div class="col-sm-4">
+									<input type="text" name="sc2" class="form-control"
+										id="sc2" value="湖南大学">
+								</div>
+								<label for="t2" class="col-sm-2 control-label" >班主任</label>
+								<div class="col-sm-4">
+									<input type="text" name="t2" class="form-control"
+										id="t2" value="湖南大学">
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<div class="form-group" style="height: 40px;">
+								<label  class="col-sm-2 control-label h4" style="color:rgb(22, 36, 235)">三年级</label>
+								
+							</div>
+							<div class="s3" style="height: 40px;">
+								<label for="s3" class="col-sm-2 control-label" >入学日期</label>
+								<div class="col-md-4">
+									<input class="form-control" type="text" value=""
+										readonly="readonly" name="s3"
+										id="s3" />
+								</div>
+								<label for="e3" class="col-sm-2 control-label rili">结束日期</label>
+								<div class="col-md-4">
+									<input class="form-control" type="text" value=""
+										readonly="readonly" name="e3"
+										id="e3" />
+								</div>	
+							</div>
+							<div class="form-group" style="height: 40px;">
+								<label for="sc3" class="col-sm-2 control-label" >学校</label>
+								<div class="col-sm-4">
+									<input type="text" name="sc3" class="form-control"
+										id="sc3" value="湖南大学">
+								</div>
+								<label for="t3" class="col-sm-2 control-label" >班主任</label>
+								<div class="col-sm-4">
+									<input type="text" name="t3" class="form-control"
+										id="t3" value="湖南大学">
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<div class="form-group" style="height: 40px;">
+								<label  class="col-sm-2 control-label h4" style="color:rgb(22, 36, 235)">四年级</label>
+								
+							</div>
+							<div class="form-group" style="height: 40px;">
+								<label for="s4" class="col-sm-2 control-label" >入学日期</label>
+								<div class="col-md-4">
+									<input class="form-control" type="text" value=""
+										readonly="readonly" name="s4"
+										id="s4" />
+								</div>
+								<label for="e4" class="col-sm-2 control-label rili">结束日期</label>
+								<div class="col-md-4">
+									<input class="form-control" type="text" value=""
+										readonly="readonly" name="e4"
+										id="e4" />
+								</div>	
+							</div>
+							<div class="form-group" style="height: 40px;">
+								<label for="sc4" class="col-sm-2 control-label" >学校</label>
+								<div class="col-sm-4">
+									<input type="text" name="sc4" class="form-control"
+										id="sc4" value="湖南大学">
+								</div>
+								<label for="t4" class="col-sm-2 control-label" >班主任</label>
+								<div class="col-sm-4">
+									<input type="text" name="t4" class="form-control"
+										id="t4" value="湖南大学">
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<div class="form-group" style="height: 40px;">
+								<label  class="col-sm-2 control-label h4" style="color:rgb(22, 36, 235)">五年级</label>
+								
+							</div>
+							<div class="form-group" style="height: 40px;">
+								<label for="s5" class="col-sm-2 control-label" >入学日期</label>
+								<div class="col-md-4">
+									<input class="form-control" type="text" value=""
+										readonly="readonly" name="s5"
+										id="s5" />
+								</div>
+								<label for="e5" class="col-sm-2 control-label rili">结束日期</label>
+								<div class="col-md-4">
+									<input class="form-control" type="text" value=""
+										readonly="readonly" name="e5"
+										id="e5" />
+								</div>	
+							</div>
+							<div class="form-group" style="height: 40px;">
+								<label for="sc5" class="col-sm-2 control-label" >学校</label>
+								<div class="col-sm-4">
+									<input type="text" name="sc5" class="form-control"
+										id="sc5" value="湖南大学">
+								</div>
+								<label for="t5" class="col-sm-2 control-label" >班主任</label>
+								<div class="col-sm-4">
+									<input type="text" name="t5" class="form-control"
+										id="t5" value="湖南大学">
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<div class="form-group" style="height: 40px;">
+								<label  class="col-sm-2 control-label">六年级</label>
+								
+							</div>
+							<div class="form-group" style="height: 40px;">
+								<label for="s6" class="col-sm-2 control-label" >入学日期</label>
+								<div class="col-md-4">
+									<input class="form-control" type="text" value=""
+										readonly="readonly" name="s6"
+										id="s6" />
+								</div>
+								<label for="e6" class="col-sm-2 control-label rili">结束日期</label>
+								<div class="col-md-4">
+									<input class="form-control" type="text" value=""
+										readonly="readonly" name="e6"
+										id="e6" />
+								</div>	
+							</div>
+							<div class="form-group" style="height: 40px;">
+								<label for="sc6" class="col-sm-2 control-label" >学校</label>
+								<div class="col-sm-4">
+									<input type="text" name="sc6" class="form-control"
+										id="sc6" value="湖南大学">
+								</div>
+								<label for="t6" class="col-sm-2 control-label" >班主任</label>
+								<div class="col-sm-4">
+									<input type="text" name="t6" class="form-control"
+										id="t6" value="湖南大学">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group" style="height: 40px;">
+							<div class="col-sm-offset-2 col-sm-3">
+								<button type="submit" class="btn btn-success form-control">添加</button>
+							</div>
+							<div class="col-sm-offset-2 col-sm-3">
+								<button type="submit" class="btn btn-info form-control">取消</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<p>&copy;copyright 2012</p>
+		</div>
+	</div>
+</body>
+</html>

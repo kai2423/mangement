@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="studentstatns.mangement.mapper.ManagerMapper">
+
+
+
+
+
+    <select id="getManagementByid" resultType="studentstatns.mangement.entity.Management">
+        select * from managements where id = #{id}
+    </select>
+
+
+    <select id="getStudentListByTeacherID" resultMap="studentstatns.mangement.mapper.StudentMapper.studentdel">
+        select
+        <include refid="studentstatns.mangement.mapper.StudentMapper.studentall" />
+        from
+        students s
+        left join
+        education e
+        on
+        s.id_card_number = e.id_card_number
+        where
+            classes = (
+                select
+                    classes
+                from
+                    managements
+                where
+                    id = #{id}
+                )
+    </select>
+
+</mapper>

@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+    <link rel="stylesheet" href="/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <script src="/jquery-1.11.3/jquery.min.js"></script>
+    <script src="/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+
+    <script>
+
+        $(function(){
+
+            $("#login").click(function (){
+                var ID = $("#ID").val();
+                var password = $("#password").val();
+
+                if(checkID(ID) && checkpassword(password)){
+
+                    $.post("/loginServlet",{"ID":ID, "password":password},function (data) {
+
+
+                        if(data.isLogin == true)
+                        {
+                            //登录成功
+                            if (data.identity == 'student')
+                            {
+
+                                location.href = "/student"
+
+                            }else if(data.identity == "班主任" )
+                            {
+                                location.href = "teacher_StudentList.html"
+                            }else
+                            {
+                                location.href = "/admin_studentList.html"
+                            }
+
+                        }else
+                        {
+                            //登录失败
+                            alert("您的ID或密码错误，请确认后登陆");
+                            $("#ID").val("");
+                            $("#password").val("");
+                        }
+                    },"json");
+                }
+            });
+
+            function checkID(ID) {
+
+                if( ID.length == 0 )
+                {
+                    alert("您的ID不能为空");
+                    return false;
+                }
+
+                return true;
+            };
+
+            function checkpassword(password) {
+                if( password.length == 0 )
+                {
+                    alert("您的密码不能为空");
+                    return false;
+                }
+                return true ;
+            };
+
+        });
+    </script>
+</head>
+<body>
+<div class="container-fluid" >
+    <div class="row" style="margin-top: 12%;  ">
+        <div class="col-md-4 col-md-offset-4" style="border:1px solid burlywood">
+            <h1>学籍管理系统--登录</h1>
+        </div>
+
+        <div class="col-md-4 col-md-offset-4" style=" padding-top: 10px; ;border:1px solid burlywood">
+            <div action="#" class="form-horizontal" id="myform">
+                <div class="form-group">
+                    <label for="ID" class="col-sm-4 control-label">ID</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="ID" id="ID" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-4 control-label">密码</label>
+                    <div class="col-sm-8">
+                        <input type="password" class="form-control" name="password" id="password" value="" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-5 col-sm-7">
+                        <button  class="btn btn-default" id="login">登录</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: mangement
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Administrator
+Implementation-Vendor-Id: StudentStatns
+Created-By: IntelliJ IDEA
+Build-Jdk: 1.8.0_92
+Main-Class: ${start-class}
+

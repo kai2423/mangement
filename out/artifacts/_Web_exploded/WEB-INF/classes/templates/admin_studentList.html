@@ -1,0 +1,753 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>学生信息管理平台</title>
+<link rel="stylesheet" type="text/css"
+	href="../../Script/bootstrap/bootstrap.css" />
+<link href="../../Style/StudentStyle.css" rel="stylesheet"
+	type="text/css" />
+<link href="../../Style/ks.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../Script/jquery.js"></script>
+<script type="text/javascript" src="../../Script/bootstrap/bootstrap.js"></script>
+<script type="text/javascript">
+	
+
+    $(function(){
+    	$.get("/getStudentInfo",function(data){
+
+    		dataResources = data;
+    		if(data.isOK)
+			{
+				//赋值
+				for (var i = 0; i< data.studentInfo.length; i++)
+				{
+					var btn1 = "btn1"+i;
+					var btn2 = "btn2"+i;
+					var btn3 = "btn3"+i;
+					var tr = "<tr>" +
+							// "<td>" +
+							// "<input type=\"checkbox\" name=\"ids\"  class=\"student\" />" +
+							// "</td>" +
+							"<td>"+data.studentInfo[i].name+"&nbsp;</td>" +
+							"<td>"+data.studentInfo[i].idCardNumber+"&nbsp;</td>" +
+							"<td>"+data.studentInfo[i].studentId+"&nbsp;</td>" +
+							"<td>"+data.studentInfo[i].classes+"&nbsp;</td>" +
+							"<td>"+data.studentInfo[i].sex+"&nbsp;</td>" +
+							"<td>"+data.studentInfo[i].age+"&nbsp;</td>" +
+							"<td>"+data.studentInfo[i].nation+"&nbsp;</td>" +
+							"<td>"+data.studentInfo[i].nativePlace+"&nbsp;</td>" +
+							"<td>" +
+							"<div align=\"center\">" +
+							"<input type=\"button\" id=\""+btn1+"\" value=\"详情\"" +
+							"data-toggle=\"modal\" data-target=\"#select\" role=\"button\"" +
+							"class=\"btn btn-primary\" onclick=\" selectdel("+i+")\" />" +
+							"</div> " +
+							"</td>" +
+							"<td>" +
+							"<div align=\"center\">" +
+							"<input type=\"button\" id=\""+btn2+"\" value=\"修改\"" +
+							"data-toggle=\"modal\" data-target=\"#change\" role=\"button\"" +
+							"class=\"btn btn-primary\" onclick=\" changedel("+i+")\" />" +
+							"</div> " +
+							"</td>" +
+							"<td>" +
+							"<div align=\"center\">" +
+							"<input type=\"button\" id=\""+btn3+"\" value=\"删除\"" +
+							"data-toggle=\"modal\" data-target=\"#delete\" role=\"button\"" +
+							"class=\"btn btn-primary\" onclick=\" deleteInfo("+i+")\"  />" +
+							"</div> " +
+							"</td>" +
+							"" +
+							"</tr>";
+					$("#studentInfo").append($(tr));
+				}
+			}else
+			{
+				location.href = "/login.html"
+			}
+
+		},"json");
+
+
+	});
+	function selectdel(index)
+	{
+		var data = dataResources;
+		$("#username").html(data.studentInfo[index].name);
+		$("#idCardNumber").html(data.studentInfo[index].idCardNumber);
+		$("#studentId").html(data.studentInfo[index].studentId);
+		$("#classes").html(data.studentInfo[index].classes);
+		$("#sex").html(data.studentInfo[index].sex);
+		$("#age").html(data.studentInfo[index].age);
+		$("#nation").html(data.studentInfo[index].nation);
+		$("#NativePlace").html(data.studentInfo[index].nativePlace);
+		$("#s1").html(data.studentInfo[index].education.s1);
+		$("#e1").html(data.studentInfo[index].education.e1);
+		$("#sc1").html(data.studentInfo[index].education.sc1);
+		$("#t1").html(data.studentInfo[index].education.t1);
+
+		$("#s2").html(data.studentInfo[index].education.s2);
+		$("#e2").html(data.studentInfo[index].education.e2);
+		$("#sc2").html(data.studentInfo[index].education.sc2);
+		$("#t2").html(data.studentInfo[index].education.t2);
+
+		$("#s3").html(data.studentInfo[index].education.s3);
+		$("#e3").html(data.studentInfo[index].education.e3);
+		$("#sc3").html(data.studentInfo[index].education.sc3);
+		$("#t3").html(data.studentInfo[index].education.t3);
+
+		$("#s4").html(data.studentInfo[index].education.s4);
+		$("#e4").html(data.studentInfo[index].education.e4);
+		$("#sc4").html(data.studentInfo[index].education.sc4);
+		$("#t4").html(data.studentInfo[index].education.t4);
+
+		$("#s5").html(data.studentInfo[index].education.s5);
+		$("#e5").html(data.studentInfo[index].education.e5);
+		$("#sc5").html(data.studentInfo[index].education.sc5);
+		$("#t5").html(data.studentInfo[index].education.t5);
+
+		$("#s6").html(data.studentInfo[index].education.s6);
+		$("#e6").html(data.studentInfo[index].education.e6);
+		$("#sc6").html(data.studentInfo[index].education.sc6);
+		$("#t6").html(data.studentInfo[index].education.t6);
+	}
+	function changedel(index)
+	{
+		var data = dataResources;
+		$("#username_change").val(data.studentInfo[index].name);
+		$("#idCardNumber_change").val(data.studentInfo[index].idCardNumber);
+		$("#studentId_change").val(data.studentInfo[index].studentId);
+		$("#classes_change").val(data.studentInfo[index].classes);
+
+		if (data.studentInfo[index].sex == '男')
+		{
+
+			$("#sex_1").attr("checked", "checked");
+
+		}else
+		{
+
+			$("#sex_2").attr("checked", "checked");
+		}
+
+		var age = data.studentInfo[index].age;
+
+		$("#age_change").val(age)
+
+		$("#nation_change").val(data.studentInfo[index].nation);
+		$("#nativePlace_change").val(data.studentInfo[index].nativePlace);
+
+		$("#s1_change").val(data.studentInfo[index].education.s1);
+		$("#e1_change").val(data.studentInfo[index].education.e1);
+		$("#sc1_change").val(data.studentInfo[index].education.sc1);
+		$("#t1_change").val(data.studentInfo[index].education.t1);
+
+		$("#s2_change").val(data.studentInfo[index].education.s2);
+		$("#e2_change").val(data.studentInfo[index].education.e2);
+		$("#sc2_change").val(data.studentInfo[index].education.sc2);
+		$("#t2_change").val(data.studentInfo[index].education.t2);
+
+		$("#s3_change").val(data.studentInfo[index].education.s3);
+		$("#e3_change").val(data.studentInfo[index].education.e3);
+		$("#sc3_change").val(data.studentInfo[index].education.sc3);
+		$("#t3_change").val(data.studentInfo[index].education.t3);
+
+		$("#s4_change").val(data.studentInfo[index].education.s4);
+		$("#e4_change").val(data.studentInfo[index].education.e4);
+		$("#sc4_change").val(data.studentInfo[index].education.sc4);
+		$("#t4_change").val(data.studentInfo[index].education.t4);
+
+		$("#s5_change").val(data.studentInfo[index].education.s5);
+		$("#e5_change").val(data.studentInfo[index].education.e5);
+		$("#sc5_change").val(data.studentInfo[index].education.sc5);
+		$("#t5_change").val(data.studentInfo[index].education.t5);
+
+		$("#s6_change").val(data.studentInfo[index].education.s6);
+		$("#e6_change").val(data.studentInfo[index].education.e6);
+		$("#sc6_change").val(data.studentInfo[index].education.sc6);
+		$("#t6_change").val(data.studentInfo[index].education.t6);
+		$("#changeInfo").click(function () {
+			var id = data.studentInfo[index].idCardNumber;
+			changeInfo(id);
+		})
+	}
+	function deleteInfo(index)
+	{
+		var data = dataResources;
+		var url = "/deleteInfo";
+		var href = url + "?id=" + data.studentInfo[index].idCardNumber;
+		$.get(href,function (data) {
+			if (data.idDeleteOK)
+			{
+				alert("删除成功");
+				location.href = "/admin_studentList.html"
+			}else
+			{
+				alert("删除失败");
+				location.href = "/admin_studentList.html"
+			}
+		})
+	}
+
+	function changeInfo(id) {
+		var info = form2JsonString("studentInfo_change");
+		$.post("/changedelInfo",{"info":info,"id":id},function (data) {
+
+			if (data.isOK)
+			{
+				alert("修改成功");
+			}else
+			{
+				alert("修改失败");
+			}
+			location.href = "/admin_studentList.html";
+		},"json");
+	}
+	function form2JsonString(formId) {
+		var paramArray = $('#' + formId).serializeArray();
+		/*请求参数转json对象*/
+		var jsonObj={};
+		$(paramArray).each(function(){
+			jsonObj[this.name]=this.value;
+		});
+		console.log(jsonObj);
+		// json对象再转换成json字符串
+		return JSON.stringify(jsonObj);
+	}
+</script>
+</head>
+<body>
+
+	<div class="banner">
+		<div class="bgh">
+			<div class="page">
+				<div id="logo">
+					<a href="../../Index.html"> <img
+						src="../../Images/Student/logo2.png" alt="" width="48" height="48" />
+					</a>
+				</div>
+				<div class="topxx">
+					<span id="user_name"></span>管理员，欢迎您！
+                    <a href=""> 通知</a> <a href="ChangePasswd.html">密码修改</a>
+                    <a onclick="loginOut()" href="javascript:void(0);">安全退出</a>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<div class="page">
+		<div class="box mtop">
+			<div class="leftbox">
+				<div class="l_nav2">
+					
+					<!--学生管理-->
+					<div class="ta1">
+						<strong>学生管理</strong>
+						<div class="leftbgbt2"></div>
+					</div>
+					<div class="cdlist">
+						<div>
+							<a href="/admin_studentList.html">学生信息列表</a>
+                        </div>
+                        <div>
+                            <a href="/adminClassInfo.html">班级信息</a>
+                        </div>
+					</div>
+                    
+					<!--结束-->
+				</div>
+			</div>
+			<div class="rightbox">
+				<h2 class="mbx">学生管理 &gt; 学生列表</h2>
+				<div class="cztable">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0"
+						style="text-align: center; margin: 30px auto 0px auto;">
+						<thead>
+							<tr>
+<!--								<th><input type="checkbox" id="all" onclick="getAll()" /></th>-->
+								<th>姓名</th>
+								<th>身份证号</th>
+								<th>学号</th>
+								<th>班级</th>
+								<th>性别</th>
+								<th>年龄</th>
+								<th>民族</th>
+								<th>籍贯</th>
+								<th colspan="3">操作</th>
+							</tr>
+						</thead>
+						<tbody id="studentInfo">
+
+						</tbody>
+<!--						<tfoot>-->
+<!--							<tr align="right" style="line-height: 50px;">-->
+<!--								<td colspan="11" style="padding-right: 40px;">-->
+<!--									<a href="" style="color:#FFF;" class="btn btn-danger" role="button">批量删除</a>-->
+<!--								</td>-->
+<!--							</tr>-->
+<!--						</tfoot>-->
+					</table>
+				
+					<!--模态框 查询学生信息-->
+					<div role="dialog" class="modal fade" id="select">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title">查询学生简单信息</h4>
+								</div>
+								<table width="100%" cellpadding="0" cellspacing="0">
+									<tr>
+										<td align="right" width="80">姓名：</td>
+										<td id="username"></td>
+										<td align="right" width="90">身份证号码：</td>
+										<td id="idCardNumber">&nbsp;</td>
+
+										<td rowspan="5">
+											<div align="center">
+												<img id="pic_face" height="160" width="120"
+													 src="/Images/16sucai_P591F7B181.JPG"
+													 style="padding: 2px 2px 5px; border: 1px #ddd solid;">
+											</div>&nbsp;
+										</td>
+									</tr>
+									<tr>
+										<td align="right">学号：</td>
+										<td id="studentId">男&nbsp;</td>
+										<td align="right">班级：</td>
+										<td id="classes">910513201419&nbsp;</td>
+									</tr>
+									<tr>
+										<td align="right">性别</td>
+										<td id="sex">本科&nbsp;</td>
+										<td align="right">年龄：</td>
+										<td id="age">湖南大学&nbsp;</td>
+									</tr>
+									<tr>
+										<td align="right">民族：</td>
+										<td id="nation">经济法学&nbsp;</td>
+										<td align="right">籍贯：</td>
+										<td id="NativePlace">2013-09-05&nbsp;</td>
+									</tr>
+
+								</table>
+								<table width="100%" cellpadding="0" cellspacing="0">
+									<tr>
+										<td align="center" width="80">一年级</td>
+										<td align="center" width="80">入学时间</td>
+										<td id="s1">邹智&nbsp;</td>
+										<td align="center" width="90">结束时间</td>
+										<td id="e1">430181198612113330&nbsp;</td>
+										<td align="center" width="80">学校</td>
+										<td id="sc1">邹智&nbsp;</td>
+										<td align="center" width="90">班主任</td>
+										<td id="t1">&nbsp;</td>
+									</tr>
+
+									<tr>
+										<td align="center" width="80">二年级</td>
+										<td align="center" width="80">入学时间</td>
+										<td id="s2">邹智&nbsp;</td>
+										<td align="center" width="90">结束时间</td>
+										<td id="e2">&nbsp;</td>
+										<td align="center" width="80">学校</td>
+										<td id="sc2">邹智&nbsp;</td>
+										<td align="center" width="90">班主任</td>
+										<td id="t2">430181198612113330&nbsp;</td>
+									</tr>
+									<tr>
+										<td align="center" width="80">三年级</td>
+										<td align="center" width="80">入学时间</td>
+										<td id="s3">邹智&nbsp;</td>
+										<td align="center" width="90">结束时间</td>
+										<td id="e3">430181198612113330&nbsp;</td>
+										<td align="center" width="80">学校</td>
+										<td id="sc3">邹智&nbsp;</td>
+										<td align="center" width="90">班主任</td>
+										<td id="t3">&nbsp;</td>
+									</tr>
+
+									<tr>
+										<td align="center" width="80">四年级</td>
+										<td align="center" width="80">入学时间</td>
+										<td id="s4">邹智&nbsp;</td>
+										<td align="center" width="90">结束时间</td>
+										<td id="e4">&nbsp;</td>
+										<td align="center" width="80">学校</td>
+										<td id="sc4">邹智&nbsp;</td>
+										<td align="center" width="90">班主任</td>
+										<td id="t4">430181198612113330&nbsp;</td>
+									</tr>
+
+									<tr>
+										<td align="center" width="80">五年级</td>
+										<td align="center" width="80">入学时间</td>
+										<td id="s5">邹智&nbsp;</td>
+										<td align="center" width="90">结束时间</td>
+										<td id="e5">&nbsp;</td>
+										<td align="center" width="80">学校</td>
+										<td id="sc5">邹智&nbsp;</td>
+										<td align="center" width="90">班主任</td>
+										<td id="t5">&nbsp;</td>
+									</tr>
+									<tr>
+										<td align="center" width="80">六年级</td>
+										<td align="center" width="80">入学时间</td>
+										<td id="s6">邹智&nbsp;</td>
+										<td align="center" width="90">结束时间</td>
+										<td id="e6">430181198612113330&nbsp;</td>
+										<td align="center" width="80">学校</td>
+										<td id="sc6">邹智&nbsp;</td>
+										<td align="center" width="90">班主任</td>
+										<td id="t6">&nbsp;</td>
+									</tr>
+								</table>
+							</div>
+								<!-- /.modal-content -->
+						</div>
+							<!-- /.modal-dialog -->
+                    </div>
+
+                    <!--模态框 删除学生简单信息-->
+					<div role="dialog" class="modal fade" id="delete">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+										<h4 class="modal-title">修改学生简单信息</h4>
+									</div>
+									
+									<h2>是否确定删除该学生信息信息</h2>
+									<div class="modal-footer">
+										<button type="button"  class="btn btn-danger">是</button>
+										<button type="button"  data-dismiss="modal"  class="btn btn-primary">否</button>
+									</div>
+								
+								</div>
+								<!-- /.modal-content -->
+							</div>
+							<!-- /.modal-dialog -->
+						</div>
+
+					<!--模态框 修改学生学籍信息-->
+					<div role="dialog" class="modal fade" id="change">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title">修改学生简单信息</h4>
+								</div>
+
+								<h2 class="mbx">学生管理 &gt; 修改学生学籍信息</h2>
+								<div class="cztable">
+									<form class="form-horizontal" id="studentInfo_change">
+										<div class="form-group" style="height: 40px;">
+											<label for="username_change" class="col-sm-2 control-label">姓名：</label>
+											<div class="col-sm-10">
+												<input type="text" name="username_change" class="form-control" readonly="readonly"
+													   id="username_change" name="" value="邹智">
+											</div>
+										</div>
+										<div class="idCardNumber_change" style="height: 40px;">
+											<label for="idCardNumber" class="col-sm-2 control-label">身份证号：</label>
+											<div class="col-sm-10">
+												<input type="text" name="idCardNumber_change" class="form-control" readonly="readonly"
+													   id="idCardNumber_change"  value="910513201419">
+											</div>
+										</div>
+										<div class="form-group" style="height: 40px;">
+											<label for="studentId" class="col-sm-2 control-label">学号：</label>
+											<div class="col-sm-10">
+												<input type="text" name="studentId" class="form-control input-xlarge" readonly="readonly"
+													   id="studentId_change"  value="123456">
+											</div>
+										</div>
+										<div class="form-group" style="height: 40px;">
+											<label for="classes_change" class="col-sm-2 control-label">班级：</label>
+											<div class="col-sm-10">
+												<input type="text" name="classes_change" class="form-control"
+													   id="classes_change" value="430181198612113330">
+											</div>
+										</div>
+										<div class="form-group" style="height: 40px;">
+											<label class="col-sm-2 control-label ">性别</label>
+											<div class="col-sm-10">
+												<label class="radio-inline">
+													<input type="radio" name="sex_change" id="sex_1" value="男"> 男
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="sex_change" id="sex_2" value="女"> 女
+												</label>
+
+											</div>
+										</div>
+										<div class="form-group" style="height: 40px;">
+											<label for="age_change" class="col-sm-2 control-label">年龄</label>
+											<div class="col-sm-10">
+												<select id="age_change" name="age"
+														class="selectpicker show-tick "
+														data-live-search="false">
+													<option value="6">6</option>
+													<option value="7">7</option>
+													<option value="8">8</option>
+													<option value="9" >9</option>
+													<option value="10">10</option>
+													<option value="11">11</option>
+													<option value="12">12</option>
+													<option value="13">13</option>
+													<option value="14">14</option>
+													<option value="15">15</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group" style="height: 40px;">
+											<label for="nation_change" class="col-sm-2 control-label">民族</label>
+											<div class="col-sm-10">
+												<input type="text" name="nation_change" class="form-control"
+													   id="nation_change" value="湖南大学">
+											</div>
+										</div>
+										<div class="form-group" style="height: 40px;">
+											<label for="nativePlace_change" class="col-sm-2 control-label">籍贯</label>
+											<div class="col-sm-10">
+												<input type="text" name="nativePlace_change" class="form-control"
+													   id="nativePlace_change" value="湖南大学">
+											</div>
+										</div>
+
+										<h3>入学信息</h3>
+										<div>
+											<div class="form-group" style="height: 40px;">
+												<label  class="col-sm-2 control-label h4" style="color:rgb(22, 36, 235)">一年级</label>
+
+											</div>
+											<div class="form-group" style="height: 40px;">
+												<label for="s1_change" class="col-sm-2 control-label" >入学日期</label>
+												<div class="col-md-4">
+													<input class="form-control" type="text" value=""
+														   readonly="readonly" name="s1_change"
+														   id="s1_change" />
+												</div>
+												<label for="e1_change" class="col-sm-2 control-label rili">结束日期</label>
+												<div class="col-md-4">
+													<input class="form-control" type="text" value=""
+														   readonly="readonly" name="e1_change"
+														   id="e1_change" />
+												</div>
+											</div>
+											<div class="form-group" style="height: 40px;">
+												<label for="sc1_change" class="col-sm-2 control-label" >学校</label>
+												<div class="col-sm-4">
+													<input type="text" name="sc1_change" class="form-control"
+														   id="sc1_change" value="湖南大学">
+												</div>
+												<label for="t1_change" class="col-sm-2 control-label" >班主任</label>
+												<div class="col-sm-4">
+													<input type="text" name="t1_change" class="form-control"
+														   id="t1_change" value="湖南大学">
+												</div>
+											</div>
+										</div>
+
+										<div>
+											<div class="form-group" style="height: 40px;">
+												<label  class="col-sm-2 control-label h4" style="color:rgb(22, 36, 235)">二年级</label>
+
+											</div>
+											<div class="form-group" style="height: 40px;">
+												<label for="s2_change" class="col-sm-2 control-label" >入学日期</label>
+												<div class="col-md-4">
+													<input class="form-control" type="text" value=""
+														   readonly="readonly" name="s2_change"
+														   id="s2_change" />
+												</div>
+												<label for="e2_change" class="col-sm-2 control-label rili">结束日期</label>
+												<div class="col-md-4">
+													<input class="form-control" type="text" value=""
+														   readonly="readonly" name="e2_change"
+														   id="e2_change" />
+												</div>
+											</div>
+											<div class="form-group" style="height: 40px;">
+												<label for="sc2_change" class="col-sm-2 control-label" >学校</label>
+												<div class="col-sm-4">
+													<input type="text" name="sc2_change" class="form-control"
+														   id="sc2_change" value="湖南大学">
+												</div>
+												<label for="t2_change" class="col-sm-2 control-label" >班主任</label>
+												<div class="col-sm-4">
+													<input type="text" name="t2_change" class="form-control"
+														   id="t2_change" value="湖南大学">
+												</div>
+											</div>
+										</div>
+
+										<div>
+											<div class="form-group" style="height: 40px;">
+												<label  class="col-sm-2 control-label h4" style="color:rgb(22, 36, 235)">三年级</label>
+
+											</div>
+											<div class="s3" style="height: 40px;">
+												<label for="s3_change" class="col-sm-2 control-label" >入学日期</label>
+												<div class="col-md-4">
+													<input class="form-control" type="text" value=""
+														   readonly="readonly" name="s3_change"
+														   id="s3_change" />
+												</div>
+												<label for="e3_change" class="col-sm-2 control-label rili">结束日期</label>
+												<div class="col-md-4">
+													<input class="form-control" type="text" value=""
+														   readonly="readonly" name="e3_change"
+														   id="e3_change" />
+												</div>
+											</div>
+											<div class="form-group" style="height: 40px;">
+												<label for="sc3_change" class="col-sm-2 control-label" >学校</label>
+												<div class="col-sm-4">
+													<input type="text" name="sc3_change" class="form-control"
+														   id="sc3_change" value="湖南大学">
+												</div>
+												<label for="t3_change" class="col-sm-2 control-label" >班主任</label>
+												<div class="col-sm-4">
+													<input type="text" name="t3_change" class="form-control"
+														   id="t3_change" value="湖南大学">
+												</div>
+											</div>
+										</div>
+
+										<div>
+											<div class="form-group" style="height: 40px;">
+												<label  class="col-sm-2 control-label h4" style="color:rgb(22, 36, 235)">四年级</label>
+
+											</div>
+											<div class="form-group" style="height: 40px;">
+												<label for="s4_change" class="col-sm-2 control-label" >入学日期</label>
+												<div class="col-md-4">
+													<input class="form-control" type="text" value=""
+														   readonly="readonly" name="s4_change"
+														   id="s4_change" />
+												</div>
+												<label for="e4_change" class="col-sm-2 control-label rili">结束日期</label>
+												<div class="col-md-4">
+													<input class="form-control" type="text" value=""
+														   readonly="readonly" name="e4_change"
+														   id="e4_change" />
+												</div>
+											</div>
+											<div class="form-group" style="height: 40px;">
+												<label for="sc4_change" class="col-sm-2 control-label" >学校</label>
+												<div class="col-sm-4">
+													<input type="text" name="sc4_change" class="form-control"
+														   id="sc4_change" value="湖南大学">
+												</div>
+												<label for="t4_change" class="col-sm-2 control-label" >班主任</label>
+												<div class="col-sm-4">
+													<input type="text" name="t4_change" class="form-control"
+														   id="t4_change" value="湖南大学">
+												</div>
+											</div>
+										</div>
+
+										<div>
+											<div class="form-group" style="height: 40px;">
+												<label  class="col-sm-2 control-label h4" style="color:rgb(22, 36, 235)">五年级</label>
+
+											</div>
+											<div class="form-group" style="height: 40px;">
+												<label for="s5_change" class="col-sm-2 control-label" >入学日期</label>
+												<div class="col-md-4">
+													<input class="form-control" type="text" value=""
+														   readonly="readonly" name="s5_change"
+														   id="s5_change" />
+												</div>
+												<label for="e5_change" class="col-sm-2 control-label rili">结束日期</label>
+												<div class="col-md-4">
+													<input class="form-control" type="text" value=""
+														   readonly="readonly" name="e5_change"
+														   id="e5_change" />
+												</div>
+											</div>
+											<div class="form-group" style="height: 40px;">
+												<label for="sc5_change" class="col-sm-2 control-label" >学校</label>
+												<div class="col-sm-4">
+													<input type="text" name="sc5_change" class="form-control"
+														   id="sc5_change" value="湖南大学">
+												</div>
+												<label for="t5_change" class="col-sm-2 control-label" >班主任</label>
+												<div class="col-sm-4">
+													<input type="text" name="t5_change" class="form-control"
+														   id="t5_change" value="湖南大学">
+												</div>
+											</div>
+										</div>
+
+										<div>
+											<div class="form-group" style="height: 40px;">
+												<label  class="col-sm-2 control-label">六年级</label>
+
+											</div>
+											<div class="form-group" style="height: 40px;">
+												<label for="s6_change" class="col-sm-2 control-label" >入学日期</label>
+												<div class="col-md-4">
+													<input class="form-control" type="text" value=""
+														   readonly="readonly" name="s6_change"
+														   id="s6_change" />
+												</div>
+												<label for="e6_change" class="col-sm-2 control-label rili">结束日期</label>
+												<div class="col-md-4">
+													<input class="form-control" type="text" value=""
+														   readonly="readonly" name="e6_change"
+														   id="e6_change" />
+												</div>
+											</div>
+											<div class="form-group" style="height: 40px;">
+												<label for="sc6_change" class="col-sm-2 control-label" >学校</label>
+												<div class="col-sm-4">
+													<input type="text" name="sc6_change" class="form-control"
+														   id="sc6_change" value="湖南大学">
+												</div>
+												<label for="t6_change" class="col-sm-2 control-label" >班主任</label>
+												<div class="col-sm-4">
+													<input type="text" name="t6_change" class="form-control"
+														   id="t6_change" value="湖南大学">
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group" style="height: 40px;">
+											<button type="button" id="changeInfo" class="btn btn-danger" >修改</button>
+											<a href="/admin_studentList.html"  data-dismiss="modal"  class="btn btn-primary">取消</a>
+										</div>
+									</form>
+								</div>
+
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+
+					
+
+					
+						
+				</div>
+			</div>
+	</div>
+	<div class="footer">
+		<p>&copy;copyright 2012</p>
+	</div>
+	</div>
+</body>
+</html>

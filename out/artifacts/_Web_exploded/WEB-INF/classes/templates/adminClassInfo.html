@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>班级信息列表</title>
+<link rel="stylesheet" type="text/css"
+	href="../../Script/bootstrap/bootstrap.css" />
+<link href="../../Style/StudentStyle.css" rel="stylesheet"
+	type="text/css" />
+<link href="../../Style/ks.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../Script/jquery.js"></script>
+<script type="text/javascript" src="../../Script/bootstrap/bootstrap.js"></script>
+<script type="text/javascript">
+
+
+	$(function () {
+
+		$.get("/getclassInfo",function (data) {
+
+			if (data.isOK)
+			{
+				for (var i = 0; i<data.classInfo.length; i++)
+				{
+					var classInfo ="<tr>"+
+							"	<td>"+(i+1)+"</td>"+
+							"	<td >"+data.classInfo[i].classes+"</td>"+
+							"	<td >"+data.classInfo[i].teacher+"</td>"+
+							"	<td >"+data.classInfo[i].num+"</td>"+
+							"</tr>";
+
+					$("#classInfo").append($(classInfo))
+				}
+			}else
+			{
+				location.href = "/login.html"
+			}
+
+
+		},"json")
+
+
+
+	});
+
+</script>
+</head>
+<body>
+
+	<div class="banner">
+		<div class="bgh">
+			<div class="page">
+				<div id="logo">
+					<a href="../Index.html"> <img
+						src="../../Images/Student/logo2.png" alt="" width="48" height="48" />
+					</a>
+				</div>
+				<div class="topxx">
+					
+					<a href=""> 通知</a> <a href="ChangePasswd.html">密码修改</a>
+					 <a  href="javascript:void(0);">安全退出</a>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<div class="page">
+		<div class="box mtop">
+                <div class="leftbox">
+                        <div class="l_nav2">
+                            
+                            <!--学生管理-->
+                            <div class="ta1">
+                                <strong>学生管理</strong>
+                                <div class="leftbgbt2"></div>
+                            </div>
+                            <div class="cdlist">
+                                <div>
+                                    <a href="admin_studentList.html">学生信息列表</a>
+                                </div>
+                                <div>
+                                    <a href="adminClassInfo.html">班级信息</a>
+                                </div>
+                            </div>
+                            
+                            <!--结束-->
+                        </div>
+                    </div>
+			<div class="rightbox">
+				<h2 class="mbx">班级管理 &gt; 班级信息列表</h2>
+				<div class="cztable">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0"
+						style="text-align: center; margin: 30px auto 0px auto;">
+						<thead>
+							<tr>								
+								<th>编号</th>
+								<th>班级编号</th>
+								<th>班主任</th>
+								<th>学生人数</th>								
+							</tr>
+						</thead>
+						<tbody id="classInfo">
+
+						</tbody>
+						
+					</table>
+				
+				</div>
+			</div>
+	</div>
+	<div class="footer">
+		<p>&copy;copyright 2012</p>
+	</div>
+	</div>
+</body>
+</html>

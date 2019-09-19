@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="studentstatns.mangement.mapper.StudentMapper">
+
+    <resultMap id="studentdel" type="studentstatns.mangement.entity.Student">
+        <id column="id" property="idCardNumber"/> 
+        <result column="name" property="name" />
+        <result column="class" property="classes" />
+        <result column="stuid" property="studentId" />
+        <result column="sex" property="sex" />
+        <result column="age" property="age" />
+        <result column="nation" property="nation" />
+        <result column="native" property="NativePlace" />
+        <association property="education" javaType="studentstatns.mangement.entity.Education">
+            <id column="id_card_number" property="idCardNumber"/>
+            <result column="s1" property="s1"/>
+            <result column="e1" property="e1"/>
+            <result column="sc1" property="sc1"/>
+            <result column="t1" property="t1"/>
+            <result column="s2" property="s2"/>
+            <result column="e2" property="e2"/>
+            <result column="sc2" property="sc2"/>
+            <result column="t2" property="t2"/>
+            <result column="s3" property="s3"/>
+            <result column="e3" property="e3"/>
+            <result column="sc3" property="sc3"/>
+            <result column="t3" property="t3"/>
+            <result column="s4" property="s4"/>
+            <result column="e4" property="e4"/>
+            <result column="sc4" property="sc4"/>
+            <result column="t4" property="t4"/>
+            <result column="s5" property="s5"/>
+            <result column="e5" property="e5"/>
+            <result column="sc5" property="sc5"/>
+            <result column="t5" property="t5"/>
+            <result column="s6" property="s6"/>
+            <result column="e6" property="e6"/>
+            <result column="sc6" property="sc6"/>
+            <result column="t6" property="t6"/>
+        </association>
+        
+    </resultMap>
+
+    <select id="findStudnetbyid" resultMap="studentdel">
+        select
+            <include refid="studentall" />
+        from
+            students s
+        left join
+            education e
+        on
+            s.id_card_number = e.id_card_number
+        where
+            s.id_card_number = #{id}
+    </select>
+
+    <update id="changepassword">
+        UPDATE
+	        student_users
+        SET
+	        passwd = #{newpa}
+        WHERE
+	        id = #{id}
+        AND
+	        passwd = #{oldPwd}
+    </update>
+
+    <update id="changeInfoByid" parameterType="studentstatns.mangement.entity.Student_change">
+        UPDATE
+            students
+        SET
+            id_card_number = #{ student.idCardNumber_change},
+            name = #{student.name_change},
+            student_id = #{student.studentId_change},
+            classes = #{student.classes_change},
+            sex = #{student.sex_change},
+            age = #{student.age_change},
+            nation = #{student.nation_change},
+            native_place = #{student.nativePlace_change}
+        WHERE
+            id_card_number = #{id}
+
+    </update>
+
+    <select id="getClassInfo" resultType="studentstatns.mangement.entity.ClassInfo">
+        SELECT
+            s.classes classes, t.name teacher ,COUNT(*) num
+        FROM
+            students s
+        JOIN
+            managements t
+        ON
+            s.classes = t.classes
+        GROUP BY
+            s.classes,t.name
+    </select>
+
+    <select id="getStudentInfo" resultMap="studentdel">
+        SELECT
+            <include refid="studentall"/>
+        FROM
+            students s
+        LEFT JOIN
+            education e
+        ON
+            s.id_card_number = e.id_card_number
+        ORDER BY
+            s.classes
+    </select>
+
+    <delete id="deleteStudentsInfoByID">
+        delete from students where id_card_number = #{id}
+    </delete>
+
+    <delete id="deleteEducationInfoByID">
+        delete from education where id_card_number = #{id}
+    </delete>
+
+    <update id="changeStudentInfo" parameterType="studentstatns.mangement.entity.StudentDel_Change">
+        update
+            students
+        set
+            <include refid="changeofStudent"/>
+        where
+            id_card_number = #{id}
+    </update>
+
+    <update id="changeEducationInfo" parameterType="studentstatns.mangement.entity.StudentDel_Change">
+        update
+            education
+        set
+            <include refid="changeofEducation"/>
+        where
+            id_card_number = #{id}
+    </update>
+
+
+    <sql id="studentall">
+         s.id_card_number id,s.name name,s.classes class, s.student_id stuid, s.sex sex, s.age age, s.nation nation, s.native_place native,
+        e.*
+    </sql>
+
+    <sql id="changeofStudent">
+        id_card_number= #{idCardNumber_change},
+        NAME = #{username_change},
+        student_id = #{studentId},
+        classes = #{classes_change},
+        sex = #{sex_change},
+        age = #{age},
+        nation = #{nation_change},
+        native_place = #{nativePlace_change}
+    </sql>
+
+    <sql id="changeofEducation">
+        id_card_number = #{idCardNumber_change},
+        s1 = #{s1_change},
+        e1 = #{e1_change},
+        sc1 = #{sc1_change},
+        t1 = #{t1_change},
+        s2 = #{s2_change},
+        e2 = #{e2_change},
+        sc2 = #{sc2_change},
+        t2 = #{t2_change},
+        s3 = #{s3_change},
+        e3 = #{e3_change},
+        sc3 = #{sc3_change},
+        t3 = #{t3_change},
+        s4 = #{s4_change},
+        e4 = #{e4_change},
+        sc4 = #{sc4_change},
+        t4 = #{t4_change},
+        s5 = #{s5_change},
+        e5 = #{e5_change},
+        sc5 = #{sc5_change},
+        t5 = #{t5_change},
+        s6 = #{s6_change},
+        e6 = #{e6_change},
+        sc6 = #{sc6_change},
+        t6 = #{t6_change}
+    </sql>
+</mapper>
